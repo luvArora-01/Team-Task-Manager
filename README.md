@@ -125,4 +125,20 @@ Start:
 npm start
 ```
 
-For Railway, set `JWT_SECRET` and `NODE_ENV=production`. If you need persistent NeDB data, attach storage for `backend/data`.
+For Railway, set:
+
+```env
+JWT_SECRET=replace-this-with-a-strong-secret
+NODE_ENV=production
+FRONTEND_URL=https://your-frontend-domain
+```
+
+`FRONTEND_URL` can contain multiple comma-separated frontend domains. The backend also accepts `ALLOWED_ORIGINS` and `CLIENT_URL`, so any one of those names can be used in Railway variables.
+
+If the frontend is deployed as a separate service/site, build it with:
+
+```env
+REACT_APP_API_URL=https://your-railway-backend-domain/api
+```
+
+If you deploy this repository as one Railway service, Express serves the React build and the frontend can keep the default `/api` base URL. If you need persistent NeDB data, attach storage for `backend/data`.
